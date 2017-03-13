@@ -95,7 +95,7 @@ void loop() {
   
   valCrossFad = analogRead(CrossFad); // Read Analog Input
   mappedvalCrossFad = map(valCrossFad, 0, 1023, 0, 127); // Map readvalue from 0 to 127
-  if (lastCrossFad != mappedvalCrossFad){ // Only send Midi CC if changed is detected use (abs(lastCrossFad - mappedvalCrossFad))>=1) for more smooth
+  if (lastCrossFad != mappedvalCrossFad){ // Only send Midi CC if changed use (abs(lastCrossFad-mappedvalCrossFad))>=2) to avoid "noise"
   controlChange(0, 30, mappedvalCrossFad); // Send CC
   MidiUSB.flush(); // Be sure CC is Send
   lastCrossFad = mappedvalCrossFad;
